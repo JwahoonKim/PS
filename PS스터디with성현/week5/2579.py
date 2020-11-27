@@ -1,27 +1,23 @@
-import sys
+##### 디버깅 ctrl + shift + B 말고 뭐있음?
 
+import sys
+#변수 입력 받기
 n = int(input())
-# n < 3 이어도 sum[1,2,3]값이 입력되게끔 n + 3
-score = [0] * (n + 3) 
+dp = [0] * 301
+score = [0] * 301
+
+#계단 점수 입력
 for i in range(1, n + 1):
     score[i] = int(sys.stdin.readline())
 
-#DP table 
-dp = [0] * (n + 3)
-# dp[n - 1]로 하면 못고르는 상태가 생김 >> dp[n - 3]으로
-# dp[n - 2] 와 dp[n - 3] + score[n - 1] 을 비교해서  
-# 큰 쪽을 골라 dp[greater] + score[n] = dp[n]
+#계단이 1,2개 인 경우
 dp[1] = score[1]
 dp[2] = score[1] + score[2]
-dp[3] = max(score[1], score[2]) + score[3]
-if n >= 4:
-    for i in range(4, n + 1):
-        if dp[i - 3] + score[i - 1] <= dp[i - 2]:
-            index = i - 2
-            dp[i] = dp[index] + score[i]
-        else:
-            index = i - 3
-            dp[i] = dp[index] + score[i - 1] + score[i]
-            
-print(dp[n])
 
+# 계단이 3개 이상인 경우
+for i in range(3, n + 1):
+    way1 = dp[i - 2] + score[i]
+    way2 = dp[i - 3] + score[i - 1] + score[i]
+    dp[i] = max(way1 , way2)
+
+print(dp[n])

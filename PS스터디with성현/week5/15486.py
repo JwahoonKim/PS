@@ -1,11 +1,12 @@
 import sys
+readline = sys.stdin.readline
 
 n = int(input())
 day = [0] * n
 money = [0] * n
 dp = [0] * (n + 1)
-for i in range(0, n):
-    day[i], money[i] = map(int, sys.stdin.readline().split())
+for i in range(n):
+    day[i], money[i] = map(int, readline().split())
 
 for i in range(n):
     if  (i + day[i]) <= n:
