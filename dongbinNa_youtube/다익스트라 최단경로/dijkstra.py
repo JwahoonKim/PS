@@ -1,3 +1,4 @@
+# O(n^2) 시간복잡도가 소요됨
 import sys
 input = sys.stdin.readline
 INF = 987654321
@@ -37,3 +38,4 @@ def dijkstra(start):
 dijkstra(start)
 
 print(distance)
+
