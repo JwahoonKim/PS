@@ -1,5 +1,3 @@
-##### 디버깅 ctrl + shift + B 말고 뭐있음?
-
 import sys
 #변수 입력 받기
 n = int(input())

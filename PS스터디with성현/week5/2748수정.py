@@ -7,6 +7,7 @@ for i in range(2, n + 1):
 
 print(d[n])
 
+
 # n = int(input())
 # fibo = [0,1]
 
