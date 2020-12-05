@@ -1,1 +1,2 @@
-print(list(range(-1, -1, -3)))
+print(round(1.4))
+print(round(1.7))
