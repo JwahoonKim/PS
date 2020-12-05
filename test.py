@@ -1,2 +1,1 @@
-a = '333'*2
-print(a)
+print(list(range(-1, -1, -3)))
