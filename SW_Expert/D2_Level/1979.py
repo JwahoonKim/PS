@@ -1,24 +1,42 @@
 T = int(input())
 for test_case in range(1, T + 1):
-    N, M = map(int, input().split())
-    graph = []
+    N, K = map(int, input().split())
     count = 0
-    for i in range(N):
+    check = 0
+    flag = 0
+    graph = []
+    for _ in range(N):
         graph.append(list(map(int, input().split())))
     for i in range(N):
+        for _ in range(K):
+            graph[i].append(0)
+    for i in range(K):
+        graph.append([0] * (N + K))
+    #세로
+    for i in range(N):
         for j in range(N):
-            for k in range(M):
-                #가로 체크
-                if graph[i][j] != 0:
-                    if j + M - 1 < N and ( j + M == N or graph[i][j + M] == 0):
-                        for l in range(M):
-                            if graph[i][j + l] != 1:
-                                break
-                            count += 1
-                if graph[i][j] != 0:
-                    if i + M - 1 < N and ( i + M == N or graph[i + M][j] == 0):
-                        for m in range(M):
-                            if graph[i + m][j] == 1:
-                                break
-                            count += 1
+            if graph[i][j] == 1:
+                for k in range(K):
+                    if graph[i + k][j] == 0:
+                        check = 0
+                        break
+                    if graph[i + k][j] == 1:
+                        check += 1
+                if check == K and graph[i + K][j] == 0 :
+                    count += 1
+                    check = 0
+    #가로
+    for i in range(N):
+        for j in range(N):
+            if graph[i][j] == 1:
+                for k in range(K):
+                    if graph[i][j + k] == 0:
+                        check = 0
+                        break
+                    if graph[i][j + k] == 1:
+                        check += 1
+                if check == K and graph[i][j + K] == 0:
+                    count += 1
+                    check = 0
+
     print(f'#{test_case} {count}')

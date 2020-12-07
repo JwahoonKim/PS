@@ -1,2 +1,3 @@
-print(round(1.4))
-print(round(1.7))
+a = [[1, 2, 3,4,5]]
+a[0][:1] = [2,3]
+print(a)
