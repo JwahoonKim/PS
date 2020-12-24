@@ -1,5 +1,5 @@
-a = '1234567'
-b = [1,2,3,4,5,6,7]
-aa = a[4:9]
-print(aa)
-print(b[4:9])
+a = input()
+b = input()
+
+if b in a:
+    print("있습니다")
