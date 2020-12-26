@@ -13,13 +13,13 @@ flag = right
 #left[0]이 계속 중앙값이 되도록 만들기
 for i in range(n - 1):
     number = int(input())
-    if len(left) > len(right)#flag == right:
+    if flag == right:
         heapq.heappush(flag, number)
-        #flag = left
+        flag = left
     else: 
         heapq.heappush(flag, -number)
-        #flag = right
+        flag = right
     
-    if -left[0] > right[0]:
+    if flag == right and -left[0] > right[0]:
         left[0], right[0] = -right[0], -left[0]
     print(-left[0])
