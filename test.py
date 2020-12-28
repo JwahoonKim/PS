@@ -1,10 +1,3 @@
-import heapq
-a = []
-heapq.heappush(a, 1)
-heapq.heappush(a, 10)
-heapq.heappush(a, 2)
-heapq.heappush(a, 8)
-heapq.heappush(a, 1)
-heapq.heappush(a, 3)
-print(a)
-print(list(a))
+graph = [[1,1,1],[0,1,1]]
+if 0 in graph[0]:
+    print('a')
