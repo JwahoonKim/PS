@@ -1,3 +1,4 @@
-graph = [[1,1,1],[0,1,1]]
-if 0 in graph[0]:
-    print('a')
+a = [1,1,1, 2, 2,2]
+b = set(a)
+print(len(b))
+print(b)
