@@ -1,2 +1,2 @@
-a = "aabc"
-print(a.find('a',2))
+for i in range(50):
+    print(i, end = ' ')
