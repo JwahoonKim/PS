@@ -29,15 +29,5 @@ n, m = map(int, input().split())
 block = []
 for i in range(n):
     block.append(list(map(int, input().rstrip())))
-answer = 9999
 
-for x in range(n):
-    for y in range(m):
-        temp = copy.deepcopy(block)
-        if temp[x][y] == 1:
-            temp[x][y] = 0 
-            a = bfs(temp)
-            if a >= 1:
-                answer = min(answer, a)
-print(answer if answer != 9999 else -1)
 
