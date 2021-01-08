@@ -10,3 +10,5 @@ def power(a, b):
         else:
             return a * half * half % c
 print(power(a,b))
+
+# pow(a,b,c)
