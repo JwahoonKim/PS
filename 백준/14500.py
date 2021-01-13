@@ -16,7 +16,7 @@ def rotate(arr):
 def mirror(arr):
     n = len(arr)
     m = len(arr[0])
-    afterMirror = [[0] * m for _ in range(m)]
+    afterMirror = [[0] * m for _ in range(n)]
     for i in range(n):
         for j in range(m):
             afterMirror[i][m - j - 1] = arr[i][j]
@@ -75,7 +75,7 @@ def rieul(arr):
     return ans
 
 
-def fuck(arr):
+def centerFinger(arr):
     n = len(arr)
     m = len(arr[0])
     ans = 0
@@ -93,7 +93,7 @@ def findMax(arr):
     way2 = box(arr)
     way3 = rieul(arr)
     way4 = nieun(arr)
-    way5 = fuck(arr)
+    way5 = centerFinger(arr)
     answer = max(way1, way2, way3, way4, way5)
     return answer
 

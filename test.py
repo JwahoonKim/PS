@@ -1,23 +1,21 @@
-import sys
-input = sys.stdin.readline
+def rotate(arr):
+    n = len(arr)
+    m = len(arr[0])
+    afterRotate = [[0] * n for _ in range(m)]
+    for i in range(n):
+        for j in range(m):
+            afterRotate[j][n - i - 1] = arr[i][j]
+    return afterRotate
 
-n = int(input())
-data = []
-for i in range(n):
-    start, end = map(int, input().split())
-    data.append((start, end))
-data.sort(key=lambda x: (x[1], x[0]))
+def mirror(arr):
+    n = len(arr)
+    m = len(arr[0])
+    afterMirror = [[0] * m for _ in range(n)]
+    for i in range(n):
+        for j in range(m):
+            afterMirror[i][m - j - 1] = arr[i][j]
+    return afterMirror
 
-for i in range(n):
-    if i == 0:
-        start = data[i][0]
-        end = data[i][1]
-        count = 1
-    else:
-        now = data[i]
-        start = now[0]
-        if start >= end:
-            count += 1
-            end = now[1]
-print(count)
-                    
+arr= [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
+mir = mirror(arr)
+print(mir)
