@@ -1,3 +1,7 @@
+# 1. 먹을 수 있는 먹이의 좌표를 구한 뒤 거기 까지 가는 최소경로를 구한다.
+# 2. 먹이 좌표 중 가장 거리가 짧은 곳으로 이동한다.
+# 3. 이걸 반복하자
+
 from collections import deque
 import sys
 import copy
@@ -29,8 +33,8 @@ def go(now, size):
     x, y = now[0], now[1]
     q.append((x, y))
     distance[x][y] = 0
-    
-    while(q):
+
+    while q:
         x, y = q.popleft()
         for i in range(4):
             nx = x + dx[i]
@@ -41,6 +45,7 @@ def go(now, size):
                         distance[nx][ny] = distance[x][y] + 1
                         q.append((nx, ny))
     return distance
+
 
 if __name__ == "__main__":
     arr = []
@@ -58,7 +63,7 @@ if __name__ == "__main__":
                 arr[i][j] = 0
     distance = go(now, size)
 
-    while(1):
+    while 1:
         dist = INF
         feed = find(size)
         distance = go(now, size)
@@ -79,4 +84,4 @@ if __name__ == "__main__":
         if count == size:
             size += 1
             count = 0
-    print(second)    
+    print(second)

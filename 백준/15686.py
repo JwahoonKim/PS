@@ -1,3 +1,5 @@
+# 완전탐색
+
 import sys
 from itertools import combinations
 

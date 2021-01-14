@@ -1,3 +1,5 @@
+# 블록을 돌리기 == 맵을 돌리기
+
 import sys
 
 input = sys.stdin.readline
