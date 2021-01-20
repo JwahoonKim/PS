@@ -1,3 +1,4 @@
+from collections import Counter
 import sys
 
 input = sys.stdin.readline
@@ -5,39 +6,38 @@ input = sys.stdin.readline
 INF = int(1e9)
 
 n, m, b = map(int, input().split())
-land = []
-time = INF
+land2D = []
+land1D = []
+answerTime = INF
 for i in range(n):
-    land.append(list(map(int, input().split())))
-# 가장 높은 위치부터 내려가면서 다 해보기
-heightSet = set()
-for i in land:
+    land2D.append(list(map(int, input().split())))
+# 2D --> 1D로
+for i in land2D:
     for j in i:
-        heightSet.add(j)
-heightSet = sorted(heightSet, reverse=True)
-# 1. 블록 개수로는 now 높이만큼 만들 수 없으면 now -= 1
-# 2. 개수가 된다면 기존 time과 now에서의 time 비교해서 작은거 저장, 이때 높이도 저장
-for now in heightSet:
+        land1D.append(j)
+# 각 높이의 블럭이 몇개씩 있는지 정보를 담는 count
+count = sorted(dict(Counter(land1D)).items(), reverse=True)
+# 땅의 높이 전부 다 해봐서 시간 제일 적게 걸리는 것 찾기
+for height in range(0, 257):
     needBlock = 0
     delTime = 0
+    addTime = 0
     block = b
-    for i in range(n):
-        for j in range(m):
-            # now보다 높이가 높은 곳 블럭은 없애기
-            if land[i][j] > now:
-                block += land[i][j] - now
-                delTime += 2 * (land[i][j] - now)
-            # now보다 높이가 낮은 곳 높이기
-            elif land[i][j] < now:
-                needBlock += now - land[i][j]
-    # now 높이에 맞춰서 쌓을 만큼의 block이 없을 경우 continue
+    for now in count:
+        # ex.) now = (1, 10) : 높이 1인 블럭 10개
+        if now[0] == height:
+            continue
+        if now[0] > height:
+            block += (now[0] - height) * now[1]
+            delTime += 2 * (now[0] - height) * now[1]
+        elif now[0] < height:
+            needBlock += (height - now[0]) * now[1]
+            addTime += (height - now[0]) * now[1]
     if needBlock > block:
         continue
     else:
-        addTime = needBlock
         nowTime = addTime + delTime
-        if nowTime < time:
-            answerHeight = now
-            time = nowTime
-
-print(time, answerHeight)
+        if nowTime <= answerTime:
+            answerTime = nowTime
+            answerHeight = height
+print(answerTime, answerHeight)
