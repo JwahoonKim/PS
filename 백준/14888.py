@@ -1,4 +1,7 @@
 from itertools import permutations
+import sys
+
+input = sys.stdin.readline
 
 INF = int(1e9)
 
@@ -11,31 +14,29 @@ totalOperator = []
 for i in range(4):
     for j in range(numberOfOperator[i]):
         totalOperator.append(operator[i])
-print(totalOperator)
+
 max = -INF
 min = INF
 
-numComb = list(permutations(numbers, len(numbers)))
-operComb = list(permutations(totalOperator, len(totalOperator)))
+operPermutation = list(permutations(totalOperator, len(totalOperator)))
 
-for number in numComb:
-    for oper in operComb:
-        result = number[0]
-        for i in range(n - 1):
-            if oper[i] == "+":
-                result += number[i + 1]
-            elif oper[i] == "-":
-                result -= number[i + 1]
-            elif oper[i] == "*":
-                result *= number[i + 1]
-            elif oper[i] == "//":
-                if result < 0:
-                    result = -(-result // number[i + 1])
-                else:
-                    result //= number[i + 1]
-        if result > max:
-            max = result
-        elif result < min:
-            min = result
+for oper in operPermutation:
+    result = numbers[0]
+    for i in range(n - 1):
+        if oper[i] == "+":
+            result += numbers[i + 1]
+        elif oper[i] == "-":
+            result -= numbers[i + 1]
+        elif oper[i] == "*":
+            result *= numbers[i + 1]
+        elif oper[i] == "//":
+            if result < 0:
+                result = -(-result // numbers[i + 1])
+            else:
+                result //= numbers[i + 1]
+    if result > max:
+        max = result
+    if result < min:
+        min = result
 print(max)
 print(min)
