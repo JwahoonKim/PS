@@ -1,3 +1,2 @@
-a = 'a b c'
-b = a.split()
-print(b)
+a = 0.24
+print(str(a)[2])
