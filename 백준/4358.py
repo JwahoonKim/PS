@@ -1,4 +1,3 @@
-from collections import Counter
 import sys
 
 input = sys.stdin.readline
@@ -7,11 +6,10 @@ trees = dict()
 countTotalTree = 0
 
 while 1:
-    tree = input()
-    if tree == "\n":
+    tree = input().rstrip()
+    if not tree:
         break
-    tree = tree.rstrip()
-    if tree in trees:
+    if trees.get(tree):
         trees[tree] += 1
         countTotalTree += 1
     else:
@@ -24,4 +22,4 @@ sortedTrees = sorted(trees.items())
 for treeInfo in sortedTrees:
     treeName = treeInfo[0]
     countTree = treeInfo[1]
-    print(treeName, round(100 * countTree / countTotalTree, 4))
+    print(treeName, "%.4f" % round(100 * countTree / countTotalTree, 4))
