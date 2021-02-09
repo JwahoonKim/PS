@@ -1,5 +1,4 @@
-a = set()
-a.add(1)
-a.add(2)
-a.add(3)
-print(list(a)[2])
+from bisect import bisect_right as bs
+
+a = [1,2,3,5,6]
+print(bs(a,4))
