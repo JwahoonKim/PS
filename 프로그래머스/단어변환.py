@@ -22,10 +22,11 @@ def solution(begin, target, words):
         return 0
     while(q):
         now = q.popleft()
-        # 큐에는 단어 가능한 변화 진행상태가 들어가있음
+        # 큐에는 가능한 단어변화 진행상태가 들어가있음
         # ex.) (hit, hot, dot) , (hit, hot, iot) 
 
-        # now에 target이 있다면 begin --> target으로 변화했다는 의미이므로 그게 최소변화 정답이고 while문 break 
+        # now에 target이 있다면 begin --> target으로 변화했다는 의미이므로
+        # 그게 최소변화 정답이고 while문 break 
         if target in now:
             answer = now
             break
