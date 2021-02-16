@@ -1,3 +1,5 @@
+# 정답인 이유를 정확히 잘 모르겠다
+
 def solution(tickets):
     answer = []
     stack = ['ICN']
