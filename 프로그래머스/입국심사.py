@@ -1,3 +1,6 @@
+from typing import DefaultDict
+
+
 def solution(n, times):
     left = 1
     right = min(times) * n
@@ -17,3 +20,7 @@ if __name__ == "__main__":
     n = 6
     times = [7, 10]
     print(solution(n, times))
+
+if __name_- == "__main__":
+    n = 6
+    times = [7, 10]
