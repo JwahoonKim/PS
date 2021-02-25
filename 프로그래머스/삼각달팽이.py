@@ -2,11 +2,8 @@ def solution(n):
     answer = []
     snail = [[] for _ in range(n + 1)]
     cur = 1
-    flag = n
-    top = 1
-    bottom = n
-    dir = 0
-    cycle = 0
+    top, bottom = 1, n
+    dir, cycle = 0, 0
     while cur <= n * (n + 1) // 2:
         # 내려가는 방향일 때
         if dir == 0:
