@@ -1,6 +1,7 @@
 import math
+
 n = int(input())
-number = list(map(int,input().split()))
+number = list(map(int, input().split()))
 count = 0
 for num in number:
     if num == 1:
@@ -12,5 +13,5 @@ for num in number:
             break
         if i == int(math.sqrt(num)):
             count += 1
-        
+
 print(count)
