@@ -1,42 +1,41 @@
-from itertools import permutations
-import sys
+from itertools import permutations as p
 
-input = sys.stdin.readline
-
-INF = int(1e9)
+INF = int(10e10)
+min = INF
+max = -INF
 
 n = int(input())
 numbers = list(map(int, input().split()))
-numberOfOperator = list(map(int, input().split()))
+numOfOper = list(map(int, input().split()))
 operator = ["+", "-", "*", "//"]
-# operator가 각각 몇 번씩 나오는지에 대한 정보 리스트
 totalOperator = []
 for i in range(4):
-    for j in range(numberOfOperator[i]):
-        totalOperator.append(operator[i])
+    totalOperator.extend([operator[i]] * numOfOper[i])
 
-max = -INF
-min = INF
+Case = list(p(totalOperator, sum(numOfOper)))
 
-operPermutation = list(permutations(totalOperator, len(totalOperator)))
-
-for oper in operPermutation:
-    result = numbers[0]
-    for i in range(n - 1):
-        if oper[i] == "+":
-            result += numbers[i + 1]
-        elif oper[i] == "-":
-            result -= numbers[i + 1]
-        elif oper[i] == "*":
-            result *= numbers[i + 1]
-        elif oper[i] == "//":
-            if result < 0:
-                result = -(-result // numbers[i + 1])
+for case in Case:
+    res = numbers[0]
+    numCur = 1
+    operCur = 0
+    while numCur < len(numbers):
+        if case[operCur] == "+":
+            res += numbers[numCur]
+        elif case[operCur] == "-":
+            res -= numbers[numCur]
+        elif case[operCur] == "*":
+            res *= numbers[numCur]
+        else:
+            if res < 0:
+                res = -(-res // numbers[numCur])
             else:
-                result //= numbers[i + 1]
-    if result > max:
-        max = result
-    if result < min:
-        min = result
+                res //= numbers[numCur]
+        numCur += 1
+        operCur += 1
+    if res > max:
+        max = res
+    if res < min:
+        min = res
+
 print(max)
 print(min)
