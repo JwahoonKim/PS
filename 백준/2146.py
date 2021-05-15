@@ -1,3 +1,6 @@
+# 섬마다 좌표를 찾아서 
+# 서로 다른 섬의 좌표끼리 거리가 최소인 경우 구해
+
 from collections import deque
 
 def bfs(n):
