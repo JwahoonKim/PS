@@ -1,4 +1,5 @@
-.vscode/
+.vscode/*
 *.json
 .vscode/settings.json
 test.py
+.DS_Store
