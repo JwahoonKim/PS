@@ -1,11 +1,9 @@
 def solution(progresses, speeds):
     answer = []
     cursor = 0
-    count = 0
     length = len(progresses)
-    while 1:
-        if cursor >= length:
-            break
+    while cursor < length:
+        count = 0
         for i in range(cursor, length):
             progresses[i] += speeds[i]
         for i in range(cursor, length):
@@ -16,5 +14,5 @@ def solution(progresses, speeds):
                 cursor += 1
         if count != 0:
             answer.append(count)
-            count = 0
     return answer
+    
