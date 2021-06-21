@@ -1,5 +1,7 @@
 from collections import deque
 
+# 첫 풀이
+
 
 def solution(bridge_length, weight, truck_weights):
     nowWeight = 0
@@ -38,3 +40,25 @@ weight = 100
 truck_weights = [10]
 
 print(solution(bridge_length, weight, truck_weights))
+
+# 두 번째 풀이
+
+
+def solution(bridge_length, weight, truck_weights):
+    time = 0
+    now_weight = 0
+    trucks = deque(truck_weights)
+    bridge_status = deque()
+    while(trucks or bridge_status):
+        time += 1
+        if(trucks and now_weight + trucks[0] <= weight):
+            cur_truck = trucks.popleft()
+            bridge_status.append([cur_truck, 0])
+            now_weight += cur_truck
+        for status in bridge_status:
+            status[1] += 1
+        if bridge_status[0][1] == bridge_length:
+            arrival = bridge_status.popleft()
+            now_weight -= arrival[0]
+
+    return time + 1
