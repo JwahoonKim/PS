@@ -1,5 +1,7 @@
 from math import sqrt
-from itertools import permutations as pm
+from itertools import permutations as p
+
+# 첫 풀이
 
 
 def isPrime(n):
@@ -17,9 +19,10 @@ def isPrime(n):
 def solution(numbers):
     count = 0
     length = len(numbers)
+    # 아랫 줄은 list(numbers) 했으면 됐을 듯!
     number = [i for i in numbers]
     for i in range(1, length + 1):
-        arr = list(pm(number, i))
+        arr = list(p(number, i))
         numSet = set()
         for j in arr:
             num = ""
@@ -32,3 +35,23 @@ def solution(numbers):
             if isPrime(x):
                 count += 1
     return count
+
+# 두 번째 풀이
+
+
+def solution(numbers):
+    answer = 0
+    num_list = list(numbers)
+    num_set = set()
+    for i in range(1, len(numbers) + 1):
+        num_pm = list(p(num_list, i))
+        for j in num_pm:
+            number = ""
+            for num in j:
+                number += num
+            if number[0] != '0':
+                num_set.add(int(number))
+    for k in num_set:
+        if isPrime(k):
+            answer += 1
+    return answer
