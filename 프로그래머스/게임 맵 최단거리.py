@@ -16,15 +16,16 @@ def solution(maps):
     q.append([0, 0])
     while(q):
         x, y = q.popleft()
+        dist = maps[x][y]
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
             if 0 <= nx < x_length and 0 <= ny < y_length:
                 if maps[nx][ny] == 1:
-                    maps[nx][ny] = maps[x][y] + 1
+                    maps[nx][ny] = dist + 1
                     q.append([nx, ny])
                 elif maps[nx][ny] != -1:
-                    if maps[nx][ny] > maps[x][y] + 1:
-                        maps[nx][ny] = maps[x][y] + 1
+                    if maps[nx][ny] > dist + 1:
+                        maps[nx][ny] = dist + 1
                         q.append([nx, ny])
     return -1 if maps[x_length - 1][y_length - 1] == 1 else maps[x_length - 1][y_length - 1]
