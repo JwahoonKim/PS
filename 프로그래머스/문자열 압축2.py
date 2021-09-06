@@ -6,26 +6,19 @@ def solution(s):
     return answer
 
 
-def compression(unit, s):
-    divided_arr = []
-    cursor = 0
-    # unit 단위로 s 쪼개기
-    while(cursor < len(s)):
-        divided_arr.append(s[cursor: cursor + unit])
-        cursor += unit
-    # 압축 시작
-    cursor = 0
+def compression(step, s):
+    compressed_stirg = ''
+    prev = s[0: step]
     repeat = 1
-    now = divided_arr[0]
-    comp_string = ""
-    for i in range(1, len(divided_arr)):
-        if divided_arr[i] == now:
+    # 압축 시작
+    for i in range(step, len(s), step):
+        next_unit = s[i: i + step]
+        if prev == next_unit:
             repeat += 1
         else:
-            comp_string += (now if repeat == 1 else str(repeat) + now)
-            now = divided_arr[i]
+            compressed_stirg += str(repeat) + prev if repeat > 1 else prev
+            prev = next_unit
             repeat = 1
-    # 아직 붙이지 못한 now까지 붙여주기
-    if now:
-        comp_string += (now if repeat == 1 else str(repeat) + now)
-    return comp_string
+    # else문에 안걸린 마지막 문자열 붙여주기
+    compressed_stirg += str(repeat) + prev if repeat > 1 else prev
+    return compressed_stirg
