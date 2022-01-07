@@ -1,36 +1,49 @@
-from itertools import permutations as p
-import copy
-
-def removeSelfHit(arr):
-    for i in range(len(arr)):
-        if arr[i] == i + 1:
-            return False
-    return True
-
 n = int(input())
-answer = 0
-numbers = [i for i in range(1, n + 1)]
-numPermutation = list(p(numbers, n))
 eggs = []
-for i in range(n):
-    s, w = map(int, input().split())
-    eggs.append([s, w])
+answer = 0
+S, W = 0, 1
 
-for i in range(len(numPermutation)):
-    count = 0
-    flag = False
-    number = numPermutation[i]
-    if removeSelfHit(number) == False:
-        continue
-    temp = copy.deepcopy(eggs)
-    for j in range(n):
-        if temp[j][0] <= 0 or temp[number[j] - 1][0] <= 0:
-            continue
-        temp[j][0] -= temp[number[j] - 1][1]
-        temp[number[j] - 1][0] -= temp[j][1]
-    for m in range(n):
-        if temp[m][0] <= 0:
-            count += 1
-    if count > answer:
-        answer = count
+for _ in range(n):
+    eggs.append(list(map(int, input().split())))
+
+def crash(nowIndex):
+    global answer
+    # 종료조건
+    if nowIndex == n:
+        breakEggs = 0
+        for i in range(n):
+            if eggs[i][S] <= 0:
+                breakEggs += 1
+        answer = max(answer, breakEggs)
+        return
+
+    # 자기가 깨져있는 경우 다음 계란으로
+    if eggs[nowIndex][S] <= 0:
+        crash(nowIndex + 1)
+        return
+    
+    # 자기말고 다 깨져있는 상황인 경우
+    isAllBroken = True
+    for targetIndex in range(n):
+        if targetIndex == nowIndex: continue
+        if eggs[targetIndex][S] > 0:
+            isAllBroken = False
+            break
+    if isAllBroken:
+        answer = max(answer, n - 1)
+        return
+
+    # 때려보기
+    for targetIndex in range(n):
+        if targetIndex == nowIndex: continue
+        if eggs[targetIndex][S] <= 0: continue
+        # 때리기
+        eggs[nowIndex][S] -= eggs[targetIndex][W]
+        eggs[targetIndex][S] -= eggs[nowIndex][W]
+        crash(nowIndex + 1)
+        # 복구
+        eggs[nowIndex][S] += eggs[targetIndex][W]
+        eggs[targetIndex][S] += eggs[nowIndex][W]
+        
+crash(0)
 print(answer)
