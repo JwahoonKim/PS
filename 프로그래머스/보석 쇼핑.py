@@ -24,8 +24,6 @@ def solution(gems):
         start = setStartPointer(start, dic, gems)
         if len(dic) == kinds and (end - start) < (answer[1] - answer[0]):
             answer = [start + 1, end + 1]
-            if end - start == kinds - 1:
-                return answer
         end += 1
         if end == length:
             return answer
