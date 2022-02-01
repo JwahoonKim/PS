@@ -9,12 +9,12 @@ def getHead(file):
 
 def getNumber(file):
     res = ""
-    isHead = False
+    isTail = False
     for c in file:
         if c.isdigit():
-            isHead = True
+            isTail = True
             res += c
-        elif isHead:
+        elif isTail:
             break
     return int(res)
 
