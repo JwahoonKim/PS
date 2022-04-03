@@ -27,10 +27,6 @@ def solution(name):
         now = 0
         result = 0
 
-        visited = [True] * len(name)
-        for place in toGoPlaces:
-            visited[place] = False
-
         for next in case:
             dist = findShortestPath(name, now, next)
             result += dist
