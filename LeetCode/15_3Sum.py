@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         answer = []
