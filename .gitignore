@@ -10,14 +10,8 @@ test4.py
 test5_2.py
 test5.py
 .vscode\
-.idea\
 카카오인턴코테\
-/.idea/gradle.xml
 /Java/Java.iml
-/.idea/modules/java.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/PS.iml
-/.idea/vcs.xml
-out\
+/out/*
 Test.java
+/.idea
