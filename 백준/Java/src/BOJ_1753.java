@@ -36,10 +36,11 @@ public class BOJ_1753 {
             int[] poll = pq.poll();
             int node = poll[0];
             int dist = poll[1];
-            if (distance[node] == INF) {
+            if (distance[node] > dist) {
                 distance[node] = dist;
                 for (int[] next : adj.get(node)) {
-                   pq.add(new int[] {next[0], next[1] + dist});
+                    if (next[1] + dist < distance[next[0]])
+                       pq.add(new int[] {next[0], next[1] + dist});
                 }
             }
         }
