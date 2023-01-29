@@ -7,7 +7,7 @@ public class LeetCode_49 {
             String sortedString = getSortedString(str);
             List<String> value = map.getOrDefault(sortedString, new ArrayList<>());
             value.add(str);
-//            map.put(sortedString, value);
+            map.put(sortedString, value);
         }
         return new ArrayList<>(map.values());
     }
