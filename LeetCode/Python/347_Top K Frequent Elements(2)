@@ -1,0 +1,17 @@
+from collections import Counter
+from collections import deque
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        answer = []
+        counter = Counter(nums)
+        counter_dict = dict(counter)
+        sorted_dict = sorted(counter_dict, key = lambda x : counter_dict[x], reverse=True)
+        q = deque(sorted_dict)
+        
+        for _ in range(k):
+            answer.append(q.popleft())
+
+        return answer
+            
+Solution().topKFrequent([1,1,2,2,3], 2)
