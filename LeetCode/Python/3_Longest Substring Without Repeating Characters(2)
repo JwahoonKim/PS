@@ -1,0 +1,28 @@
+from collections import deque
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+
+        answer = 1
+        used = set(s[0])
+        left, right = 0, 0
+        
+        while right < len(s) - 1:
+            right += 1
+            if s[right] in used:
+                while s[left] != s[right]:
+                    used.remove(s[left])
+                    left += 1
+                used.remove(s[left])
+                left += 1
+                        
+            used.add(s[right])
+            
+            if right - left + 1 > answer:
+                answer = right - left + 1
+        
+        return answer
+    
+print(Solution().lengthOfLongestSubstring("bbbbb"))
