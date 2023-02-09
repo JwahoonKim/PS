@@ -1,0 +1,9 @@
+from collections import Counter
+
+class Solution:
+    def numJewelsInStones(self, jewels: str, stones: str) -> int:
+        answer = 0
+        counter = Counter(stones)
+        for char in jewels:
+            answer += counter[char]
+        return answer
