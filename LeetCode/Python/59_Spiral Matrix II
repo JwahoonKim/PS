@@ -1,0 +1,24 @@
+from typing import List
+
+
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        answer = [[0] * n for _ in range(n)]
+        r, c = 0, 0
+        dr = [0, 1, 0, -1]
+        dc = [1, 0, -1, 0]
+        dir = 0
+        
+        for i in range(1, n * n + 1):
+            answer[r][c] = i
+            nextR = r + dr[dir]
+            nextC = c + dc[dir]
+            if not (0 <= nextR < n and 0 <= nextC < n) or answer[nextR][nextC] != 0:
+                dir = (dir + 1) % 4
+                nextR = r + dr[dir]
+                nextC = c + dc[dir]
+            r = nextR
+            c = nextC
+        return answer
+
+print(Solution().generateMatrix(3))
