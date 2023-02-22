@@ -24,7 +24,7 @@ def add_last_char_if_too_short(new_id):
             new_id = new_id + new_id[-1]
     return new_id
 
-천
+
 def solution(new_id: str):
     new_id = new_id.lower()
     new_id = remove_non_valid_char(new_id)
@@ -35,5 +35,3 @@ def solution(new_id: str):
     new_id = remove_start_and_end_dot(new_id)
     new_id = add_last_char_if_too_short(new_id)
     return new_id
-
-print(solution("12"))
